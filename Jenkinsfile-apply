@@ -19,10 +19,10 @@ pipeline {
     }
     stage ('Apply resources') {
       when {
-        branchi 'master'
+        branch 'master'
       }
       steps {
-        ssh 'oc apply -k samples'
+        sh 'oc apply -k samples'
         // ignore delete errors caused by templates deleted by previous runs
         sh 'oc delete -f delete --wait || true'
       }
